@@ -11,11 +11,27 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "secondary_label": "",
+        "secondary_link": ""
+      }
     },
     "story": {
       "type": "about-story",
-      "settings": {}
+      "settings": {
+        "badge_number": "",
+        "badge_text": "",
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "link_label": "",
+        "link": ""
+      }
     },
     "benefits": {
       "type": "benefits",
@@ -23,15 +39,30 @@
     },
     "featured": {
       "type": "featured-collection",
-      "settings": {}
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "collection": "مجموعة-طعمات-رواق",
+        "products_to_show": 3,
+        "button_label": "عرض كل المنتجات",
+        "button_link": ""
+      }
     },
     "testimonial": {
       "type": "testimonial",
-      "settings": {}
+      "settings": {
+        "quote": "",
+        "author": ""
+      }
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {}
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": ""
+      }
     }
   },
   "order": [
