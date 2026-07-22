@@ -1,0 +1,15 @@
+{% if section.settings.enable %}
+<div class="announcement-bar">
+  {{ section.settings.text }}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "شريط الإعلانات",
+  "settings": [
+    { "type": "checkbox", "id": "enable", "label": "تفعيل الشريط", "default": true },
+    { "type": "text", "id": "text", "label": "نص الإعلان", "default": "🌿 شحن سريع لكل المدن | متة طبيعية 100٪ بدون إضافات" }
+  ]
+}
+{% endschema %}

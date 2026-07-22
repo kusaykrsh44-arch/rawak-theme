@@ -1,0 +1,31 @@
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter__wrap" data-reveal>
+      <span class="eyebrow" style="justify-content:center;">{{ section.settings.eyebrow | default: 'ابقَ رايق معنا' }}</span>
+      <h2>{{ section.settings.heading | default: 'اشترك واحصل على خصم أول طلب' }}</h2>
+      <p>{{ section.settings.text | default: 'نشرة هادئة، بدون إزعاج — بس أهم العروض والجديد من رواك.' }}</p>
+
+      {% form 'customer', class: 'newsletter-form' %}
+        {% if form.posted_successfully? %}
+          <p style="color: var(--color-forest); font-weight:700;">{{ 'newsletter.success' | t }}</p>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" placeholder="بريدك الإلكتروني" required>
+          <button type="submit">اشتراك</button>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "النشرة البريدية",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "نص علوي صغير" },
+    { "type": "text", "id": "heading", "label": "العنوان" },
+    { "type": "textarea", "id": "text", "label": "الوصف" }
+  ],
+  "presets": [{ "name": "النشرة البريدية" }]
+}
+{% endschema %}

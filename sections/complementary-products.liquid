@@ -1,0 +1,21 @@
+<section class="products dynamic-products" data-complementary-products data-product-id="{{ product.id }}" data-limit="4" hidden>
+  <div class="container">
+    <div class="section-head">
+      <div class="heading-block">
+        <span class="eyebrow">اقتراحات</span>
+        <h2>{{ section.settings.heading | default: 'قد يعجبك أيضًا' }}</h2>
+      </div>
+    </div>
+    <div class="product-grid" data-dynamic-grid></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "منتجات مكمّلة",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "العنوان" }
+  ],
+  "presets": [{ "name": "منتجات مكمّلة" }]
+}
+{% endschema %}

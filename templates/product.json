@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": { "type": "main-product" },
+    "fbt": { "type": "frequently-bought" },
+    "reviews": { "type": "customer-reviews" },
+    "complementary": { "type": "complementary-products" },
+    "recent": { "type": "recently-viewed" }
+  },
+  "order": ["main", "fbt", "reviews", "complementary", "recent"]
+}

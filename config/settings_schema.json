@@ -1,0 +1,36 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "RAWAK",
+    "theme_version": "1.0.0",
+    "theme_author": "RAWAK",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "ألوان",
+    "settings": [
+      { "type": "color", "id": "accent_color", "label": "اللون المميز (طيني)", "default": "#A65A2E" }
+    ]
+  },
+  {
+    "name": "عام",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "أيقونة الموقع (Favicon)" }
+    ]
+  },
+  {
+    "name": "روابط التواصل الاجتماعي",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "رابط انستغرام" },
+      { "type": "url", "id": "social_tiktok", "label": "رابط تيك توك" }
+    ]
+  },
+  {
+    "name": "السلة",
+    "settings": [
+      { "type": "number", "id": "free_shipping_threshold", "label": "حد الشحن المجاني (بعملة المتجر، اترك فارغ للتعطيل)", "default": 50 },
+      { "type": "product", "id": "cart_upsell_product", "label": "منتج مقترح داخل السلة" }
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+<section class="collection-main" style="padding-top:70px;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="eyebrow" style="justify-content:center;display:flex;">{{ 'general.search.submit' | t }}</span>
+      <h1>{{ 'general.search.results_for' | t: terms: search.terms }}</h1>
+
+      <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:420px;margin:24px auto 0;display:flex;gap:8px;">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" style="flex:1;padding:12px 18px;border-radius:999px;border:1px solid var(--color-line);">
+        <input type="hidden" name="type" value="product">
+        <button type="submit" class="btn btn-primary">{{ 'general.search.submit' | t }}</button>
+      </form>
+    </div>
+
+    {% if search.results.size > 0 %}
+      <div class="product-grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% render 'product-card', product: item %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="cart-empty">
+        <p>{{ 'general.search.no_results' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn-outline">{{ 'general.continue_shopping' | t }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "صفحة البحث" }
+{% endschema %}

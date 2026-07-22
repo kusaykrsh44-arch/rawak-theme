@@ -1,0 +1,59 @@
+{
+  "general": {
+    "meta": {
+      "tags": "موسومة بـ \"{{ tags }}\"",
+      "page": "صفحة {{ page }}"
+    },
+    "search": {
+      "placeholder": "ابحث عن منتج...",
+      "submit": "بحث",
+      "results_for": "نتائج البحث عن «{{ terms }}»",
+      "no_results": "ما لقينا نتائج مطابقة لبحثك"
+    },
+    "continue_shopping": "تصفح كل المنتجات"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "أضف إلى السلة",
+      "adding": "جارِ الإضافة...",
+      "added": "تمت الإضافة ✓",
+      "sold_out": "غير متوفر",
+      "unavailable_option": "غير متوفر بهذا الخيار",
+      "in_stock": "متوفر بالمخزون",
+      "quantity": "الكمية",
+      "buy_now": "اشترِ الآن",
+      "redirecting": "جارِ التحويل...",
+      "error": "تعذّرت العملية، حاول مرة أخرى.",
+      "view_product": "عرض المنتج",
+      "add_all_to_cart": "أضف الكل للسلة"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "سلة المشتريات",
+      "your_cart": "سلتك",
+      "empty": "سلتك فارغة حاليًا",
+      "empty_drawer": "سلتك فاضية، خلّيها ما تضل هيك 🌿",
+      "subtotal": "المجموع الفرعي",
+      "checkout": "إتمام الشراء",
+      "view_cart": "عرض السلة كاملة",
+      "remove": "إزالة",
+      "total": "الإجمالي",
+      "shipping_note": "الشحن والضرائب تُحسب عند الدفع",
+      "shop_now": "تسوّق الآن",
+      "free_shipping_reached": "🎉 مبروك! صار عندك شحن مجاني",
+      "free_shipping_remaining": "{{ amount }} وبتوصلك شحن مجاني 🌿",
+      "you_might_like": "قد يعجبك أيضًا"
+    }
+  },
+  "newsletter": {
+    "success": "تم الاشتراك بنجاح، أهلاً فيك بعائلة رواك 🌿"
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة"
+  },
+  "localization": {
+    "language_label": "اللغة",
+    "country_label": "الدولة / العملة"
+  }
+}

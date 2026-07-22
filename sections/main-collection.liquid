@@ -1,0 +1,65 @@
+<div class="collection-header">
+  <div class="container">
+    <nav class="breadcrumbs" style="justify-content:center;">
+      <a href="{{ routes.root_url }}">{{ shop.name }}</a><span>/</span><span aria-current="page">{{ collection.title }}</span>
+    </nav>
+    <span class="eyebrow" style="justify-content:center;">مجموعة</span>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <p style="max-width:560px;margin:0 auto;">{{ collection.description }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": {{ shop.name | json }}, "item": {{ request.origin | json }} },
+    { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ request.origin | append: collection.url | json }} }
+  ]
+}
+</script>
+
+<section class="collection-main">
+  <div class="container">
+    <div class="collection-toolbar">
+      <span>{{ collection.products_count }} منتج</span>
+      <form method="get">
+        <select name="sort_by" onchange="this.form.submit()">
+          <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>الترتيب الافتراضي</option>
+          <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>السعر: من الأقل</option>
+          <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>السعر: من الأعلى</option>
+          <option value="title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>الاسم: أ-ي</option>
+          <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>الأحدث</option>
+        </select>
+      </form>
+    </div>
+
+    {% paginate collection.products by 12 %}
+      {% if collection.products.size > 0 %}
+        <div class="product-grid">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="cart-empty">
+          <p>ما في منتجات في هذه المجموعة حاليًا.</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn-outline">{{ 'general.continue_shopping' | t }}</a>
+        </div>
+      {% endif %}
+
+      {% if paginate.pages > 1 %}
+        <div class="products__footer">
+          {{ paginate | default_pagination: prev_label: 'السابق', next_label: 'التالي' }}
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "صفحة المجموعة" }
+{% endschema %}

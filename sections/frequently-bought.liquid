@@ -1,0 +1,56 @@
+<section class="fbt">
+  <div class="container">
+    <span class="eyebrow">يشترون معًا غالبًا</span>
+    <h2>{{ section.settings.heading | default: 'أكمل طقسك الرايق' }}</h2>
+
+    <div class="fbt__row" data-fbt-row>
+      <div class="fbt__item">
+        <img src="{{ product.featured_image | image_url: width: 140 }}" alt="{{ product.title | escape }}">
+        <div>
+          <strong>{{ product.title }}</strong>
+          <div>{{ product.price | money }}</div>
+        </div>
+      </div>
+
+      {% for block in section.blocks %}
+        {% assign extra = all_products[block.settings.product] %}
+        {% if extra != blank %}
+          <span class="fbt__plus">+</span>
+          <div class="fbt__item">
+            <input type="checkbox" data-fbt-checkbox data-variant-id="{{ extra.selected_or_first_available_variant.id }}" data-price="{{ extra.price }}" checked style="width:18px;height:18px;">
+            <img src="{{ extra.featured_image | image_url: width: 140 }}" alt="{{ extra.title | escape }}">
+            <div>
+              <strong>{{ extra.title }}</strong>
+              <div>{{ extra.price | money }}</div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="fbt__total">
+        <span>الإجمالي</span>
+        <strong data-fbt-total>{{ product.price | money }}</strong>
+        <button class="btn btn-primary" data-fbt-add data-main-variant-id="{{ product.selected_or_first_available_variant.id }}" data-main-price="{{ product.price }}">{{ 'products.product.add_all_to_cart' | t }}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "اشتروا معًا",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "العنوان" }
+  ],
+  "blocks": [
+    {
+      "type": "extra_product",
+      "name": "منتج إضافي",
+      "settings": [
+        { "type": "product", "id": "product", "label": "المنتج" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "اشتروا معًا" }]
+}
+{% endschema %}

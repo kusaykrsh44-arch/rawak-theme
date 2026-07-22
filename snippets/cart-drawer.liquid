@@ -1,0 +1,63 @@
+<div class="cart-drawer-overlay" data-cart-drawer-overlay></div>
+<aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+  <div class="cart-drawer__header">
+    <h2>{{ 'cart.general.your_cart' | t }} <span data-cart-drawer-count>({{ cart.item_count }})</span></h2>
+    <button data-cart-drawer-close aria-label="{{ 'cart.general.title' | t }}">✕</button>
+  </div>
+
+  {% if settings.free_shipping_threshold > 0 %}
+    {% assign threshold_cents = settings.free_shipping_threshold | times: 100 %}
+    {% assign remaining_amount = threshold_cents | minus: cart.total_price | money %}
+    <div class="shipping-bar" data-shipping-bar data-threshold="{{ threshold_cents }}">
+      <p class="shipping-bar__msg" data-shipping-msg>
+        {% if cart.total_price >= threshold_cents %}
+          {{ 'cart.general.free_shipping_reached' | t }}
+        {% else %}
+          {{ 'cart.general.free_shipping_remaining' | t: amount: remaining_amount }}
+        {% endif %}
+      </p>
+      <div class="shipping-bar__track">
+        <div class="shipping-bar__fill" data-shipping-fill style="width: {{ cart.total_price | times: 100.0 | divided_by: threshold_cents | at_most: 100 }}%;"></div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="cart-drawer__items" data-cart-drawer-items>
+    {% if cart.item_count > 0 %}
+      {% for item in cart.items %}
+        {% render 'cart-drawer-item', item: item %}
+      {% endfor %}
+    {% else %}
+      <div class="cart-drawer__empty" data-cart-drawer-empty>
+        <p>{{ 'cart.general.empty_drawer' | t }}</p>
+        <button class="btn btn-outline" data-cart-drawer-close>{{ 'general.continue_shopping' | t }}</button>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if settings.cart_upsell_product != blank %}
+    {% assign upsell = all_products[settings.cart_upsell_product] %}
+    {% if upsell != blank and upsell.available %}
+      <div class="cart-drawer__upsell">
+        <span class="cart-drawer__upsell-label">{{ 'cart.general.you_might_like' | t }}</span>
+        <div class="cart-drawer__upsell-card">
+          <img src="{{ upsell.featured_image | image_url: width: 120 }}" alt="{{ upsell.title | escape }}">
+          <div>
+            <div class="cart-drawer-item__title">{{ upsell.title }}</div>
+            <div class="cart-drawer-item__price">{{ upsell.price | money }}</div>
+          </div>
+          <button class="btn btn-outline" data-cart-drawer-add data-variant-id="{{ upsell.selected_or_first_available_variant.id }}">{{ 'products.product.add_to_cart' | t }}</button>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <div class="cart-drawer__footer" data-cart-drawer-footer {% if cart.item_count == 0 %}style="display:none;"{% endif %}>
+    <div class="cart-drawer__subtotal">
+      <span>{{ 'cart.general.subtotal' | t }}</span>
+      <strong data-cart-subtotal>{{ cart.total_price | money }}</strong>
+    </div>
+    <a href="{{ routes.cart_url }}/checkout" class="btn btn-primary" style="width:100%;">{{ 'cart.general.checkout' | t }}</a>
+    <a href="{{ routes.cart_url }}" class="btn btn-outline" style="width:100%;margin-top:10px;">{{ 'cart.general.view_cart' | t }}</a>
+  </div>
+</aside>

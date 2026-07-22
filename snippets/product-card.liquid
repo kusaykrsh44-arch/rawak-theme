@@ -1,0 +1,30 @@
+{% comment %} يستقبل: product {% endcomment %}
+<div class="product-card" data-reveal>
+  <a href="{{ product.url }}" class="product-card__media">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy">
+    {% else %}
+      <img src="{{ 'rawak-product-1.jpg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy">
+    {% endif %}
+    {% if product.compare_at_price > product.price %}
+      <span class="badge">خصم</span>
+    {% endif %}
+  </a>
+  <div class="product-card__body">
+    <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <s>{{ product.compare_at_price | money }}</s>
+      {% endif %}
+      <span>{{ product.price | money }}</span>
+    </div>
+    {% if product.available %}
+      <form data-add-to-cart-form action="/cart/add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="product-card__cta">{{ 'products.product.add_to_cart' | t }}</button>
+      </form>
+    {% else %}
+      <button class="product-card__cta" disabled>{{ 'products.product.sold_out' | t }}</button>
+    {% endif %}
+  </div>
+</div>

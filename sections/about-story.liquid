@@ -1,0 +1,43 @@
+<section class="story" id="story">
+  <div class="container">
+    <div class="story__grid">
+
+      <div class="story__media" data-reveal>
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" loading="lazy">
+        {% else %}
+          <img src="{{ 'rawak-story.jpg' | asset_url }}" alt="قصة رواك" loading="lazy">
+        {% endif %}
+        <div class="story__badge">
+          <span>{{ section.settings.badge_number | default: '100%' }}</span>
+          {{ section.settings.badge_text | default: 'طبيعية بدون إضافات' }}
+        </div>
+      </div>
+
+      <div class="story__text" data-reveal>
+        <span class="eyebrow">{{ section.settings.eyebrow | default: 'قصتنا' }}</span>
+        <h2>{{ section.settings.heading | default: 'من الحقل، إلى كوبك بهدوء' }}</h2>
+        {{ section.settings.text | default: '<p>رواك بدأت من فكرة بسيطة: نفس واحد رايق يقدر يغيّر يومك كامل. نجمع أوراق المتة من مزارع صغيرة، ونتركها تجف بطريقتها الطبيعية، من غير أي معالجة أو نكهات صناعية، عشان توصلك العشبة بنكهتها الأصلية وفايدتها الكاملة.</p>' }}
+        <a href="{{ section.settings.link | default: '/pages/about' }}" class="btn btn-outline">{{ section.settings.link_label | default: 'اقرأ قصتنا كاملة' }}</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "قصة العلامة",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "الصورة" },
+    { "type": "text", "id": "badge_number", "label": "رقم الشارة" },
+    { "type": "text", "id": "badge_text", "label": "نص الشارة" },
+    { "type": "text", "id": "eyebrow", "label": "نص علوي صغير" },
+    { "type": "text", "id": "heading", "label": "العنوان" },
+    { "type": "richtext", "id": "text", "label": "النص" },
+    { "type": "text", "id": "link_label", "label": "نص الرابط" },
+    { "type": "url", "id": "link", "label": "رابط" }
+  ],
+  "presets": [{ "name": "قصة العلامة" }]
+}
+{% endschema %}

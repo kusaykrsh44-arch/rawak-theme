@@ -1,0 +1,19 @@
+<section class="testimonial">
+  <div class="container">
+    <blockquote data-reveal>
+      “{{ section.settings.quote | default: 'من أول رشفة حسيت بالفرق… رواك مش بس مشروب، هي لحظة أرجع فيها لنفسي.' }}”
+    </blockquote>
+    <cite>{{ section.settings.author | default: '— عميلة رواك' }}</cite>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "اقتباس / رأي عميل",
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "نص الاقتباس" },
+    { "type": "text", "id": "author", "label": "الاسم" }
+  ],
+  "presets": [{ "name": "اقتباس / رأي عميل" }]
+}
+{% endschema %}

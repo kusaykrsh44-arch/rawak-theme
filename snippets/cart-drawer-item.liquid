@@ -1,0 +1,20 @@
+<div class="cart-drawer-item" data-line-key="{{ item.key }}">
+  <a href="{{ item.url }}" class="cart-drawer-item__media">
+    <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}">
+  </a>
+  <div class="cart-drawer-item__body">
+    <a href="{{ item.url }}" class="cart-drawer-item__title">{{ item.product.title }}</a>
+    {% unless item.variant.title == 'Default Title' %}
+      <div class="cart-drawer-item__variant">{{ item.variant.title }}</div>
+    {% endunless %}
+    <div class="cart-drawer-item__row">
+      <div class="qty-selector qty-selector--sm" data-qty-selector>
+        <button type="button" data-drawer-qty="-1" data-key="{{ item.key }}" data-qty="{{ item.quantity }}" aria-label="إنقاص">−</button>
+        <span data-drawer-qty-value>{{ item.quantity }}</span>
+        <button type="button" data-drawer-qty="1" data-key="{{ item.key }}" data-qty="{{ item.quantity }}" aria-label="زيادة">+</button>
+      </div>
+      <button class="cart-drawer-item__remove" data-cart-remove="{{ item.key }}" aria-label="{{ 'cart.general.remove' | t }}">{{ 'cart.general.remove' | t }}</button>
+    </div>
+  </div>
+  <strong class="cart-drawer-item__price">{{ item.line_price | money }}</strong>
+</div>

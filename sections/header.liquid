@@ -1,0 +1,93 @@
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+
+    <button class="nav-toggle" data-nav-toggle aria-label="فتح القائمة" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="{{ routes.root_url }}" class="site-logo">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}">
+      {% else %}
+        {{ shop.name | default: 'RAWAK' }}
+      {% endif %}
+    </a>
+
+    <nav class="site-nav">
+      {% for link in section.settings.menu.links %}
+        {% if link.links.size > 0 %}
+          <div class="nav-item nav-item--dropdown">
+            <a href="{{ link.url }}" class="nav-item__trigger">
+              {{ link.title }}
+              <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4.5 4.5L10 1"/></svg>
+            </a>
+            <div class="mega-menu">
+              <div class="mega-menu__inner">
+                {% for childlink in link.links %}
+                  <a href="{{ childlink.url }}" class="mega-menu__link">{{ childlink.title }}</a>
+                {% endfor %}
+
+                {% if section.settings.menu_promo_image != blank %}
+                  <a href="{{ section.settings.menu_promo_link | default: '/collections/all' }}" class="mega-menu__promo">
+                    <img src="{{ section.settings.menu_promo_image | image_url: width: 400 }}" alt="{{ section.settings.menu_promo_title | escape }}" loading="lazy">
+                    <span>{{ section.settings.menu_promo_title | default: 'اكتشف رواك' }}</span>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="header-icons">
+      <a href="{{ routes.search_url }}" aria-label="بحث">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </a>
+      <a href="{{ routes.account_url }}" aria-label="الحساب">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </a>
+      <button data-cart-drawer-open aria-label="سلة المشتريات">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H7"/><circle cx="10" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>
+        <span class="cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav-overlay" data-mobile-nav-overlay></div>
+<div class="mobile-nav" data-mobile-nav>
+  <button class="mobile-nav__close" data-mobile-nav-close aria-label="إغلاق القائمة">✕</button>
+  {% for link in section.settings.menu.links %}
+    {% if link.links.size > 0 %}
+      <details class="mobile-nav__group">
+        <summary>{{ link.title }}
+          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l4.5 4.5L10 1"/></svg>
+        </summary>
+        <div class="mobile-nav__sublinks">
+          {% for childlink in link.links %}
+            <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+          {% endfor %}
+        </div>
+      </details>
+    {% else %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "الهيدر",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "الشعار" },
+    { "type": "link_list", "id": "menu", "label": "قائمة التنقل", "default": "main-menu" },
+    { "type": "header", "content": "بطاقة ترويجية داخل المينيو (اختياري)" },
+    { "type": "image_picker", "id": "menu_promo_image", "label": "صورة ترويجية" },
+    { "type": "text", "id": "menu_promo_title", "label": "عنوان البطاقة" },
+    { "type": "url", "id": "menu_promo_link", "label": "رابط البطاقة" }
+  ]
+}
+{% endschema %}

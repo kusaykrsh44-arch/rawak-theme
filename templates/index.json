@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "story": { "type": "about-story" },
+    "benefits": { "type": "benefits" },
+    "featured": { "type": "featured-collection" },
+    "testimonial": { "type": "testimonial" },
+    "newsletter": { "type": "newsletter" }
+  },
+  "order": ["hero", "story", "benefits", "featured", "testimonial", "newsletter"]
+}

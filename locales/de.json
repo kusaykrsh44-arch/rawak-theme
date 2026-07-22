@@ -1,0 +1,59 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Getaggt mit \"{{ tags }}\"",
+      "page": "Seite {{ page }}"
+    },
+    "search": {
+      "placeholder": "Produkte suchen...",
+      "submit": "Suchen",
+      "results_for": "Suchergebnisse für „{{ terms }}“",
+      "no_results": "Keine Ergebnisse für deine Suche gefunden"
+    },
+    "continue_shopping": "Weiter einkaufen"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "In den Warenkorb",
+      "adding": "Wird hinzugefügt...",
+      "added": "Hinzugefügt ✓",
+      "sold_out": "Ausverkauft",
+      "unavailable_option": "Mit dieser Option nicht verfügbar",
+      "in_stock": "Auf Lager",
+      "quantity": "Menge",
+      "buy_now": "Jetzt kaufen",
+      "redirecting": "Weiterleitung...",
+      "error": "Etwas ist schiefgelaufen, bitte versuche es erneut.",
+      "view_product": "Produkt ansehen",
+      "add_all_to_cart": "Alle in den Warenkorb"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Warenkorb",
+      "your_cart": "Dein Warenkorb",
+      "empty": "Dein Warenkorb ist derzeit leer",
+      "empty_drawer": "Dein Warenkorb ist leer, lass uns das ändern 🌿",
+      "subtotal": "Zwischensumme",
+      "checkout": "Zur Kasse",
+      "view_cart": "Ganzen Warenkorb ansehen",
+      "remove": "Entfernen",
+      "total": "Gesamtsumme",
+      "shipping_note": "Versand und Steuern werden an der Kasse berechnet",
+      "shop_now": "Jetzt einkaufen",
+      "free_shipping_reached": "🎉 Du hast kostenlosen Versand freigeschaltet!",
+      "free_shipping_remaining": "Noch {{ amount }} bis zum kostenlosen Versand 🌿",
+      "you_might_like": "Das könnte dir auch gefallen"
+    }
+  },
+  "newsletter": {
+    "success": "Du bist angemeldet! Willkommen bei der RAWAK-Familie 🌿"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten"
+  },
+  "localization": {
+    "language_label": "Sprache",
+    "country_label": "Land / Region"
+  }
+}
