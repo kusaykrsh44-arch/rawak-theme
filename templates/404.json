@@ -1,6 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": { "type": "main-404" }
+    "main": {
+      "type": "main-404",
+      "settings": {}
+    },
+    "featured_collection_MMJ3bf": {
+      "type": "featured-collection",
+      "name": "منتجات مميزة",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "collection": "",
+        "products_to_show": 4,
+        "button_label": "عرض كل المنتجات",
+        "button_link": ""
+      }
+    },
+    "hero_KEHKVd": {
+      "type": "hero",
+      "name": "قسم البداية (Hero)",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "secondary_label": "",
+        "secondary_link": ""
+      }
+    },
+    "about_story_c7AKUE": {
+      "type": "about-story",
+      "name": "قصة العلامة",
+      "settings": {
+        "badge_number": "",
+        "badge_text": "",
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "link_label": "",
+        "link": ""
+      }
+    }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "featured_collection_MMJ3bf",
+    "hero_KEHKVd",
+    "about_story_c7AKUE"
+  ]
 }
