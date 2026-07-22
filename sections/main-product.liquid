@@ -1,0 +1,144 @@
+<section class="product-main" data-product-json="{{ product | json | escape }}">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+      {% if product.collections.first %}
+        <span>/</span><a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>
+      {% endif %}
+      <span>/</span><span aria-current="page">{{ product.title }}</span>
+    </nav>
+    <div class="product-layout">
+
+      <div class="product-gallery">
+        <div class="product-gallery__main" data-zoom-wrap>
+          <img src="{{ product.selected_or_first_available_variant.featured_image | default: product.featured_image | image_url: width: 1000 }}"
+               alt="{{ product.featured_image.alt | escape }}" data-gallery-main>
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="product-gallery__thumbs">
+            {% for image in product.images %}
+              <img src="{{ image | image_url: width: 200 }}"
+                   data-full-src="{{ image | image_url: width: 1000 }}"
+                   data-gallery-thumb
+                   data-variant-image-id="{{ image.id }}"
+                   class="{% if forloop.first %}active{% endif %}"
+                   alt="{{ image.alt | escape }}">
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-info">
+        <div class="product-info__top">
+          <div>
+            <span class="eyebrow">{{ product.type | default: 'متة طبيعية' }}</span>
+            <h1>{{ product.title }}</h1>
+          </div>
+          <button class="wishlist-btn" data-wishlist-toggle data-product-id="{{ product.id }}" aria-label="أضف للمفضلة">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20S3 14 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 14 12 20 12 20Z"/></svg>
+          </button>
+        </div>
+
+        {% if section.settings.show_rating %}
+          <a href="#reviews" class="rating-summary">
+            <span class="rating-stars" aria-hidden="true">★★★★★</span>
+            <span>{{ section.settings.rating_count | default: 24 }} تقييم</span>
+          </a>
+        {% endif %}
+
+        <div class="product-price" data-product-price>
+          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+            <s data-compare-price>{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>
+          {% endif %}
+          <span data-final-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+        </div>
+
+        <div class="product-desc rte">{{ product.description }}</div>
+
+        {% form 'product', product, data-add-to-cart-form: true %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+          {% for option in product.options_with_values %}
+            <div class="option-picker" data-option-index="{{ forloop.index0 }}">
+              <span class="option-picker__label">{{ option.name }}</span>
+              <div class="option-picker__values">
+                {% for value in option.values %}
+                  <button type="button"
+                          class="option-pill {% if value == option.selected_value %}active{% endif %}"
+                          data-option-value="{{ value | escape }}"
+                          data-option-index="{{ forloop.parentloop.index0 }}">
+                    {{ value }}
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="qty-row">
+            <div class="qty-selector" data-qty-selector>
+              <button type="button" data-qty-minus aria-label="إنقاص">−</button>
+              <input type="number" name="quantity" value="1" min="1" aria-label="الكمية">
+              <button type="button" data-qty-plus aria-label="زيادة">+</button>
+            </div>
+            <span class="stock-msg" data-stock-msg>
+              {% if product.selected_or_first_available_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}
+            </span>
+          </div>
+
+          <div class="product-form__buttons">
+            <button type="submit" class="btn btn-primary" data-add-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+              <span data-add-btn-text>{% if product.selected_or_first_available_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+            </button>
+            {% if section.settings.show_buy_now %}
+              <button type="submit" name="buy_now" class="btn btn-outline" data-buy-now {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>{{ 'products.product.buy_now' | t }}</button>
+            {% endif %}
+          </div>
+        {% endform %}
+
+        <p class="delivery-estimate">
+          {{ section.settings.delivery_estimate | default: 'التوصيل المتوقع خلال 2–5 أيام عمل' }}
+        </p>
+
+        <div class="trust-badges">
+          {% for block in section.blocks %}
+            {% if block.type == 'trust_badge' %}
+              <div class="trust-badge" {{ block.shopify_attributes }}>
+                <span>{{ block.settings.text }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="accordion">
+          <details class="accordion-item" open>
+            <summary>طريقة التحضير</summary>
+            <div class="accordion-body">{{ section.settings.brew_instructions | default: 'ضع 2-3 ملاعق من عشبة المتة في الكوب، أضف ماء ساخن (غير مغلي) بحرارة حوالي 80°، واتركها بضع دقائق قبل الشرب.' }}</div>
+          </details>
+          <details class="accordion-item">
+            <summary>الشحن والإرجاع</summary>
+            <div class="accordion-body">{{ section.settings.shipping_info | default: 'شحن خلال 2-5 أيام عمل. إمكانية الإرجاع خلال 7 أيام إذا كان المنتج غير مفتوح.' }}</div>
+          </details>
+          {% for block in section.blocks %}
+            {% if block.type == 'faq' %}
+              <details class="accordion-item" {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.question }}</summary>
+                <div class="accordion-body">{{ block.settings.answer }}</div>
+              </details>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-atc" data-sticky-atc>
+  <div class="container sticky-atc__inner">
+    <div class="sticky-atc__product">
+      <img src="{{ product.featured_image | image_url: width: 100 }}" alt="">
+      <span>{{ product.title }}</span>
+    </div>
+    <div class="sticky-atc__price" data-sticky-price>{{ product.selected_or_first_available_variant.price | money }}</div>
+    <button class="btn btn-primary" data-sticky-add-btn {% unless product.available %}disabled{% endunless %}>{{ 'products.product.add_to_cart' | t }}</button>
+  </div>
+</div>
