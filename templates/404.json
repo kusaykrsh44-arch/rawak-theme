@@ -34,10 +34,10 @@
         "eyebrow": "",
         "heading": "",
         "text": "",
-        "collection": "",
-        "products_to_show": 4,
+        "collection": "متة",
+        "products_to_show": 3,
         "button_label": "عرض كل المنتجات",
-        "button_link": ""
+        "button_link": "shopify://products/مته-رواق"
       }
     },
     "about_story_c7AKUE": {
@@ -80,7 +80,7 @@
             "card_border_radius": 0,
             "background_color": "#ffffff",
             "card_background": "#ffffff",
-            "category_color": "#A65A2E",
+            "category_color": "#a65a2e",
             "title_color": "#000000",
             "subtitle_color": "#666666",
             "text_color": "#333333",
