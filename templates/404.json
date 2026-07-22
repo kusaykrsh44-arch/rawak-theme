@@ -9,8 +9,22 @@
  */
 {
   "sections": {
+    "hero_KEHKVd": {
+      "type": "hero",
+      "name": "قسم البداية (Hero)",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "secondary_label": "",
+        "secondary_link": ""
+      }
+    },
     "main": {
       "type": "main-404",
+      "disabled": true,
       "settings": {}
     },
     "featured_collection_MMJ3bf": {
@@ -26,19 +40,6 @@
         "button_link": ""
       }
     },
-    "hero_KEHKVd": {
-      "type": "hero",
-      "name": "قسم البداية (Hero)",
-      "settings": {
-        "eyebrow": "",
-        "heading": "",
-        "text": "",
-        "button_label": "",
-        "button_link": "",
-        "secondary_label": "",
-        "secondary_link": ""
-      }
-    },
     "about_story_c7AKUE": {
       "type": "about-story",
       "name": "قصة العلامة",
@@ -51,12 +52,58 @@
         "link_label": "",
         "link": ""
       }
+    },
+    "1784724979b8e332e7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f88bfb3_dcyXmi": {
+          "type": "ai_gen_block_f88bfb3",
+          "disabled": true,
+          "settings": {
+            "show_header": true,
+            "category": "",
+            "title": "Latest Stories",
+            "subtitle": "Discover our curated collection of editorial content",
+            "header_alignment": "center",
+            "featured_article": "",
+            "sidebar_article_1": "",
+            "sidebar_article_2": "",
+            "bottom_article_1": "",
+            "bottom_article_2": "",
+            "bottom_article_3": "",
+            "show_excerpt": true,
+            "show_meta": true,
+            "desktop_width_percent": 100,
+            "section_padding": 40,
+            "grid_gap": 30,
+            "card_padding": 20,
+            "card_border_radius": 0,
+            "background_color": "#ffffff",
+            "card_background": "#ffffff",
+            "category_color": "#A65A2E",
+            "title_color": "#000000",
+            "subtitle_color": "#666666",
+            "text_color": "#333333",
+            "meta_color": "#999999",
+            "category_size": 12,
+            "title_size": 42,
+            "subtitle_size": 16,
+            "header_spacing": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f88bfb3_dcyXmi"
+      ],
+      "settings": {}
     }
   },
   "order": [
+    "hero_KEHKVd",
     "main",
     "featured_collection_MMJ3bf",
-    "hero_KEHKVd",
-    "about_story_c7AKUE"
+    "about_story_c7AKUE",
+    "1784724979b8e332e7"
   ]
 }
